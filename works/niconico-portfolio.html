@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【React】ニコニコ動画風ポートフォリオ作ってみた【Next.js】 - 【ポートフォリオ】みづこの作品まとめてみた【ニコニコ風】</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <h1 class="site-title"><a href="../index.html">【ポートフォリオ】みづこの作品まとめてみた【ニコニコ風】</a></h1>
+      <nav class="global-nav">
+        <a href="../works.html">動画一覧</a>
+        <a href="../profile.html">プロフィール</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="breadcrumb">
+        <a href="../index.html">トップ</a> &gt; <a href="../works.html">動画一覧</a> &gt; <span>【React】ニコニコ動画風ポートフォリオ作ってみた【Next.js】</span>
+      </div>
+      <h2 class="work-detail-title">【React】ニコニコ動画風ポートフォリオ作ってみた【Next.js】</h2>
+      
+      <section class="player-section">
+        <div id="slideshow" class="player">
+          <!-- スライドショーはJSでここに生成 -->
+        </div>
+      </section>
+
+      <div class="video-details-grid">
+        <div class="work-detail-main">
+          <h3>作品説明</h3>
+          <p>ニコニコ動画風UIをモチーフにしたReact製ポートフォリオサイトです。Next.jsとTypeScriptで構築し、Tailwind CSSでスタイリングしています。コメント機能や弾幕機能など、インタラクティブな要素を盛り込みました。</p>
+          <h3>担当範囲</h3>
+          <p>企画・デザイン・実装すべて</p>
+          <h3>制作期間</h3>
+          <p>約1週間</p>
+          <h3>リンク</h3>
+          <ul class="link-list">
+            <li><a href="#" target="_blank" rel="noopener noreferrer">GitHubリポジトリ</a></li>
+            <li><a href="#" target="_blank" rel="noopener noreferrer">デプロイ先URL</a></li>
+          </ul>
+        </div>
+        <aside class="work-detail-aside">
+          <div class="meta-box">
+            <h4>投稿情報</h4>
+            <p>投稿日: 2024/11/19</p>
+            <p>カテゴリ: Webアプリ</p>
+            <h4>タグ</h4>
+            <div class="tag-list">
+              <a href="../works.html?tag=React" class="tag">React</a>
+              <a href="../works.html?tag=TypeScript" class="tag">TypeScript</a>
+              <a href="../works.html?tag=Next.js" class="tag">Next.js</a>
+              <a href="../works.html?tag=Tailwind%20CSS" class="tag">Tailwind CSS</a>
+              <a href="../works.html?tag=UI%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3" class="tag">UIデザイン</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="author-comment-section">
+        <h3>作者コメント</h3>
+        <div class="comment-thread">
+          <p><strong>1. なぜこの作品を作ろうと思ったか</strong><br>自分のポートフォリオを作るにあたり、ただ作品を並べるだけでなく、サイト自体も一つの作品として見て面白いものにしたい、という思いから制作しました。昔から慣れ親しんだニコニコ動画のUIは、情報量が多くてもなぜかワクワクする不思議な魅力があると感じており、その雰囲気を再現することに挑戦しました。</p>
+          <p><strong>2. こだわったポイント</strong><br>ダークな背景に映えるアクセントカラーの選定や、コメントや弾幕が流れるアニメーションなど、「それっぽさ」の演出にこだわりました。特に弾幕は、見ているだけでも楽しめるように、いくつかのサンプルコメントを常に流すようにしています。</p>
+          <p><strong>3. 苦労した点・次に活かしたい学び</strong><br>当初はReact(Next.js)で開発を進めていましたが、ビルド周りのエラーに苦戦し、最終的にシンプルなHTML/CSS/JS構成に切り替えました。これにより、フレームワークの複雑さから解放され、より本質的な機能実装に集中できました。Webの基本的な技術の重要性を再認識する良い機会となりました。</p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2024 Mizuko's Portfolio</p>
+    </footer>
+  </div>
+  <script src="../js/data.js"></script>
+  <script src="../js/slider.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const workId = 'niconico-portfolio';
+      const workIndex = works.findIndex(w => w.id === workId);
+      const work = works[workIndex];
+
+      if (work) {
+        // 1枚目の画像をサムネイルから構築
+        const thumbnailImage = `../images/thumbnails/${workIndex + 1}.${work.thumbnailExt}`;
+
+        // 2枚目以降の画像を workImages から構築
+        const slideImages = work.workImages.map(fileName => `../images/works/${workIndex + 1}/${fileName}`);
+
+        // サムネイルとスライド画像を結合
+        const allImages = [thumbnailImage, ...slideImages];
+
+        new SimpleSlider('slideshow', allImages);
+      }
+    });
+  </script>
+</body>
+</html>

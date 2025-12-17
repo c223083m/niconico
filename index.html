@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>みづこのポートフォリオ</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* 1. 全体共通（スマホ・PC共通） */
+    .video-uploader-profile {
+      align-self: center !important;
+    }
+
+    /* 入力フォームの設定 */
+    #comment-form {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 8px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    #comment-form input,
+    #comment-form button {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
+    }
+
+    /* 作品カードの基本（サムネイル設定） */
+    .work-card-thumbnail {
+      width: 240px !important;      /* PCでのサイズ */
+      aspect-ratio: 16 / 9 !important;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      background-color: #000;
+    }
+
+    .work-card-thumbnail img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block;
+    }
+
+    /* 2. PCサイズ（1024px以上）のみ */
+    @media (min-width: 1024px) {
+      .main-layout-container {
+        display: flex !important;
+        align-items: stretch !important;
+        gap: 1.5rem !important;
+      }
+
+      .player-section { flex: 5 !important; }
+
+      .comment-section {
+        flex: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        min-width: 250px;
+      }
+
+      .comment-list {
+        flex-grow: 1 !important;
+        overflow-y: auto !important;
+        height: 0 !important;
+      }
+
+      .video-details-grid { display: block !important; }
+      .video-description {
+        max-width: 800px !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+      }
+      .video-description p { text-align: left !important; }
+      .video-description .button-link {
+        max-width: 300px !important;
+        margin: 1.5rem auto 0 !important;
+      }
+    }
+
+    /* 3. スマホサイズ（1023px以下）の微調整 */
+    @media (max-width: 1023px) {
+      .work-card {
+        padding: 0.5rem !important;
+      }
+
+      .work-card-thumbnail {
+        width: 120px !important; /* スマホでは小さくする */
+      }
+
+      .work-card-title {
+        font-size: 1rem !important;
+      }
+
+      .comment-section {
+        width: 100% !important;
+        margin-top: 20px !important;
+        min-width: 0 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー -->
+    <header class="site-header">
+      <h1 class="site-title">みづこのポートフォリオ</h1>
+      <nav class="global-nav">
+        <a href="works.html">動画一覧</a>
+        <a href="profile.html">プロフィール</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 動画ヘッダーセクション -->
+      <section class="video-header-section">
+        <div class="video-header-main">
+          <h2 class="video-title">【ポートフォリオ】みづこの作品まとめてみた【ニコニコ動画風】</h2>
+          <div class="player-meta">
+            <div>
+              <strong>投稿日</strong>: 2025/12/1 <strong>再生</strong>: 1,234 <strong>コメント</strong>: <span id="comment-count">56</span>
+            </div>
+          </div>
+          <div class="tag-list video-header-tags">
+            <a href="works.html?tag=Web%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3" class="tag">AI</a>
+            <a href="works.html?tag=%E3%82%B2%E3%83%BC%E3%83%A0" class="tag">ゲーム</a>
+            <a href="works.html?tag=3D" class="tag">3D</a>
+            <a href="works.html?tag=%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E9%A2%A8UI" class="tag">Webデザイン</a>
+          </div>
+        </div>
+        <a href="profile.html" class="video-uploader-profile">
+          <img src="images/common/プロフ画像.jpg" alt="プロフィールアイコン" class="profile-icon-small">
+        </a>
+      </section>
+
+      <div class="main-layout-container">
+        <!-- プレイヤーセクション -->
+        <section class="player-section">
+          <div id="player" class="danmaku-player">
+            <div id="top-slideshow" class="slideshow-container top-slideshow">
+              <!-- スライドショーはJSでここに生成 -->
+            </div>
+            <!-- 弾幕はJSでここに追加 -->
+          </div>
+        </section>
+        <!-- コメントセクション -->
+        <section id="comment-section" class="comment-section">
+          <h3>コメント</h3>
+          <div id="comment-list" class="comment-list">
+            <!-- コメントはJSでここに追加 -->
+          </div>
+          <div class="comment-form-wrapper">
+            <form id="comment-form">
+              <input type="text" id="nickname-input" placeholder="ニックネーム (任意)">
+              <input type="text" id="comment-input" placeholder="コメント" required>
+              <button type="submit">投稿</button>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <!-- 動画情報セクション -->
+      <section class="video-info-section">
+        <div class="video-details-grid">
+          <div class="video-description">
+            <h3>このサイトについて</h3>
+            <p>
+              みづこのポートフォリオサイトです。ニコニコ動画の2010年ごろの雰囲気を参考に、これまで作ったWebサイト・ゲーム・3Dなどの作品を“動画一覧”風に並べています。コメントや弾幕で、見に来てくれた人も一緒に楽しめるデザインを目指しました。
+            </p>
+            <a href="works.html" class="button-link">→ 動画一覧ページへ</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 Mizuko's Portfolio</p>
+    </footer>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/slider.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>動画一覧 - 【ポートフォリオ】みづこの作品まとめてみた【ニコニコ風】</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー -->
+    <header class="site-header">
+      <h1 class="site-title"><a href="index.html">みづこのポートフォリオ</a></h1>
+      <nav class="global-nav">
+        <a href="works.html" class="active">動画一覧</a>
+        <a href="profile.html">プロフィール</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="works-list-section">
+        <div class="works-list-header">
+          <h2 id="works-list-title">動画一覧</h2>
+          <a href="works.html" id="clear-filter-link" class="hidden">絞り込みを解除</a>
+        </div>
+        <div id="works-list-container" class="works-list-container">
+          <!-- 作品カードはJSでここに挿入 -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 Mizuko's Portfolio</p>
+    </footer>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/works.js"></script>
+</body>
+</html>
