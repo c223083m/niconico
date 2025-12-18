@@ -21,13 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return `
       <div class="work-card">
-        <a href="works/${work.id}.html" class="work-card-thumbnail">
+        <a href="works/work.html?id=${work.id}" class="work-card-thumbnail">
           <img src="${escapeHTML(work.thumbnail)}" alt="${escapeHTML(work.title)}" loading="lazy">          <div class="work-card-overlay">
             <svg class="play-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path></svg>
           </div>
         </a>
         <div class="work-card-info">
-          <a href="works/${work.id}.html">
+          <a href="works/work.html?id=${work.id}">
             <h3 class="work-card-title">${escapeHTML(work.title)}</h3>
           </a>
           <div class="work-card-meta">

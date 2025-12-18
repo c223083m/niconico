@@ -11,14 +11,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- ヘッダー -->
-    <header class="site-header">
-      <h1 class="site-title"><a href="index.html">みづこのポートフォリオ</a></h1>
-      <nav class="global-nav">
-        <a href="works.html">動画一覧</a>
-        <a href="profile.html" class="active">プロフィール</a>
-      </nav>
-    </header>
+    <div id="header-placeholder"></div>
 
     <main>
       <section class="profile-section">
@@ -55,9 +48,12 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <p>&copy; 2025 Mizuko's Portfolio</p>
-    </footer>
+    <div id="footer-placeholder"></div>
   </div>
+  <script src="js/template-loader.js"></script>
+  <script>
+    loadHTML('/_includes/header.html', 'header-placeholder');
+    loadHTML('/_includes/footer.html', 'footer-placeholder');
+  </script>
 </body>
 </html>

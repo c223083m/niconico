@@ -720,3 +720,101 @@ a:hover {
 #top-slideshow .slide-counter {
   display: none;
 }
+
+/* From index.html */
+/* 1. 全体共通（スマホ・PC共通） */
+.video-uploader-profile {
+  align-self: center !important;
+}
+
+/* 入力フォームの設定 */
+#comment-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#comment-form input,
+#comment-form button {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+}
+
+/* 作品カードの基本（サムネイル設定） */
+.work-card-thumbnail {
+  width: 240px !important;      /* PCでのサイズ */
+  aspect-ratio: 16 / 9 !important;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #000;
+}
+
+.work-card-thumbnail img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
+
+/* 2. PCサイズ（1024px以上）のみ */
+@media (min-width: 1024px) {
+  .main-layout-container {
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 1.5rem !important;
+  }
+
+  .player-section { flex: 5 !important; }
+
+  .comment-section {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 250px;
+  }
+
+  .comment-list {
+    flex-grow: 1 !important;
+    overflow-y: auto !important;
+    height: 0 !important;
+  }
+
+  .video-details-grid { display: block !important; }
+  .video-description {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+  .video-description p { text-align: left !important; }
+  .video-description .button-link {
+    max-width: 300px !important;
+    margin: 1.5rem auto 0 !important;
+  }
+}
+
+/* 3. スマホサイズ（1023px以下）の微調整 */
+@media (max-width: 1023px) {
+  .work-card {
+    padding: 0.5rem !important;
+  }
+
+  .work-card-thumbnail {
+    width: 120px !important; /* スマホでは小さくする */
+  }
+
+  .work-card-title {
+    font-size: 1rem !important;
+  }
+
+  .comment-section {
+    width: 100% !important;
+    margin-top: 20px !important;
+    min-width: 0 !important;
+  }
+}
