@@ -7,6 +7,15 @@ body {
   padding: 0;
   font-size: 16px;
   line-height: 1.6;
+
+  /* スクロールバーを非表示にする (Chrome, Safari, Edge) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* スクロールバーを非表示にする (Firefox) */
+  scrollbar-width: none;
+  /* スクロールバーを非表示にする (IE/Old Edge) */
+  -ms-overflow-style: none;
 }
 
 .container {
@@ -862,21 +871,47 @@ a:hover {
 
 @media (max-width: 768px) {
   .nico-profile-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-bottom: 1.5rem;
+    flex-direction: row; /* 横並びを維持 */
+    align-items: flex-end;
+    text-align: left;
+    padding: 0 1rem 1.5rem 1rem;
+    gap: 1rem;
   }
   .nico-profile-icon {
-    margin-top: -60px;
+    width: 80px;  /* スマホ用に少し小さく */
+    height: 80px;
+    margin-top: -40px;
   }
   .nico-user-name {
-    justify-content: center;
-    margin-top: 1rem;
+    justify-content: flex-start;
+    font-size: 1.4rem; /* 名前を少し小さく */
+  }
+  .nico-user-badges {
+    justify-content: flex-start;
+  }
+  .nico-header-top-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .nico-header-actions {
+    margin-top: 0;
   }
   .nico-nav-tabs {
     overflow-x: auto;
+    overflow-y: hidden; /* 縦スクロールを完全に禁止 */
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    /* スクロールバーを非表示にする (Chrome, Safari, Edge) */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    /* スクロールバーを非表示にする (Firefox) */
+    scrollbar-width: none;
+  }
+  .nico-nav-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
   }
 }
 
