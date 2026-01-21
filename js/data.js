@@ -4,9 +4,8 @@ const works = [
     title: '【Webサイト】ニコニコ動画風ポートフォリオ作ってみた',
     views: 1234,
     comments: 56,
-    postedAt: '2025/12/17',
+    postedAt: '2026/01/21',
     description: 'ニコニコ動画風UIをモチーフにしたポートフォリオサイトです。昔から慣れ親しんだニコニコ動画のUIの魅力を再現することに挑戦しました。',
-    scope: '企画・デザイン・実装すべて',
     period: '約5時間',
     links: [
       { name: 'このサイトのURL', url: '#' }
@@ -26,12 +25,11 @@ const works = [
   },
   {
     id: 'work-1',
-    title: '【iOSアプリ】ひとこと日記',
+    title: '【iOSアプリ】「ひとこと日記」開発のすべてが分かる動画',
     views: 850,
     comments: 24,
     postedAt: '2025/11/20',
     description: '日々の出来事を「ひとこと」だけ記録する、シンプルさに特化したiOS日記アプリです。',
-    scope: '企画・デザイン・開発 (Swift/SwiftUI)',
     period: '約1ヶ月',
     links: [
       { name: 'App Store (準備中)', url: '#' }
@@ -56,7 +54,6 @@ const works = [
     comments: 123,
     postedAt: '2024/08/10',
     description: 'Unityで制作した、広大な世界を冒険する3Dアクションゲーム。',
-    scope: 'ゲームデザイン、プログラミング',
     period: '約2ヶ月',
     links: [
       { name: 'GitHubリポジトリ', url: '#' }

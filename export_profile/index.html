@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロフィール - みづこの自己紹介</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- css/style.css の内容 --- */
+    /* --- 基本設定 & フォント --- */
+    body {
+      background-color: #333;
+      color: #fff;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      line-height: 1.6;
+
+      /* スクロールバーを非表示にする */
+      &::-webkit-scrollbar { display: none; }
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    a {
+      color: #00aeff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- ヘッダー --- */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #666;
+    }
+
+    .site-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .site-header .site-title a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .global-nav a {
+      margin-left: 1.5rem;
+      color: #ccc;
+      font-weight: bold;
+    }
+    .global-nav a:hover {
+      color: #fff;
+    }
+
+    /* --- プロフィールページ (ニコニコ風) --- */
+    .user-cover-image {
+      height: 150px;
+      background: linear-gradient(to right, #333, #444);
+      background-image: radial-gradient(#555 1px, transparent 1px);
+      background-size: 20px 20px;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid #555;
+      border-bottom: none;
+      position: relative;
+    }
+
+    .nico-profile-header {
+      background-color: #252525;
+      border: 1px solid #555;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 0 2rem 2rem 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: flex-end;
+      gap: 2rem;
+      position: relative;
+    }
+
+    .nico-profile-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+      border: 4px solid #252525;
+      background-color: #fff;
+      margin-top: -60px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .nico-profile-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nico-profile-info {
+      flex-grow: 1;
+      padding-bottom: 0.5rem;
+      min-width: 0;
+    }
+
+    .nico-header-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .nico-user-name-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .nico-user-name {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .user-level-badge {
+      font-size: 0.8rem;
+      background-color: #f5b001;
+      color: #000;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      vertical-align: middle;
+    }
+
+    .nico-user-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nico-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .crown-badge {
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      vertical-align: middle;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .crown-gold {
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      color: #000;
+      border: 1px solid #b8860b;
+      box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+    .crown-silver {
+      background: linear-gradient(135deg, #c0c0c0, #808080);
+      color: #000;
+      border: 1px solid #696969;
+    }
+
+    .btn-follow {
+      background: linear-gradient(to bottom, #fff, #ddd);
+      border: 1px solid #999;
+      color: #333;
+      font-weight: bold;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-follow:hover {
+      background: linear-gradient(to bottom, #eee, #ccc);
+      text-decoration: none;
+    }
+    .btn-follow.following {
+      background: #333;
+      color: #ccc;
+      border-color: #555;
+    }
+    .btn-follow .icon-plus {
+      font-size: 1.1rem;
+      line-height: 1;
+      color: #00aeff;
+    }
+    .btn-follow.following .icon-plus {
+      display: none;
+    }
+
+    .nico-user-bio-short {
+      color: #ccc;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* --- タブナビゲーション --- */
+    .nico-nav-tabs {
+      display: flex;
+      border-bottom: 2px solid #555;
+      margin-bottom: 2rem;
+      gap: 0.5rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+    .nico-nav-tabs::-webkit-scrollbar { display: none; }
+    .nico-nav-tabs { scrollbar-width: none; }
+
+    .nico-nav-btn {
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      position: relative;
+      font-family: inherit;
+      transition: color 0.2s;
+    }
+
+    .nico-nav-btn:hover {
+      color: #fff;
+      background-color: rgba(255,255,255,0.05);
+      border-radius: 8px 8px 0 0;
+    }
+
+    .nico-nav-btn.active {
+      color: #00aeff;
+    }
+    .nico-nav-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #00aeff;
+    }
+
+    /* --- タブコンテンツ --- */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content-box {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid #666;
+      border-radius: 8px;
+      padding: 2rem;
+    }
+
+    .content-box h3 {
+      font-size: 1.4rem;
+      border-left: 5px solid #00aeff;
+      padding-left: 1rem;
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-grid, .community-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .skill-card {
+      background-color: #333;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #555;
+    }
+    .skill-card strong {
+      color: #00aeff;
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .community-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.05);
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid #555;
+      transition: all 0.2s;
+    }
+    .community-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #777;
+    }
+    .community-thumb {
+      width: 60px;
+      height: 60px;
+      background-color: #000;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .community-info h4 {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0 0 0.25rem 0;
+    }
+    .community-info p {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin: 0;
+    }
+
+    .sns-grid {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .sns-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      color: white;
+      transition: transform 0.2s;
+    }
+    .sns-btn:hover {
+      transform: translateY(-2px);
+    }
+    .sns-github { background-color: #333; border: 1px solid #fff; }
+    .sns-x { background-color: #000; border: 1px solid #333; }
+    .sns-blog { background-color: #00aeff; }
+
+    .nicorepo-list {
+      border-top: 1px solid #555;
+      margin-top: 1rem;
+    }
+    .nicorepo-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #555;
+    }
+    .nicorepo-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #444;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+    .nicorepo-content { flex-grow: 1; }
+    .nicorepo-header { font-size: 0.9rem; color: #ccc; margin-bottom: 0.25rem; }
+    .nicorepo-header strong { color: #fff; }
+    .nicorepo-body { font-size: 1rem; font-weight: bold; color: #00aeff; }
+    .nicorepo-time { font-size: 0.8rem; color: #888; margin-left: auto; white-space: nowrap; }
+
+    .site-footer {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #555;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .nico-profile-header {
+        flex-direction: row;
+        align-items: flex-end;
+        text-align: left;
+        padding: 0 1rem 1.5rem 1rem;
+        gap: 1rem;
+      }
+      .nico-profile-icon {
+        width: 80px;
+        height: 80px;
+        margin-top: -40px;
+      }
+      .nico-user-name {
+        justify-content: flex-start;
+        font-size: 1.4rem;
+      }
+      .nico-header-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      .nico-header-actions {
+        margin-top: 0;
+      }
+      .nico-nav-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー埋め込み -->
+    <header class="site-header">
+      <h1 class="site-title">みづこの自己紹介サイト</h1>
+    </header>
+
+    <main>
+      <!-- パンくずリスト -->
+      <div style="font-size: 0.9rem; color: #ccc; margin-bottom: 1rem;">
+        <a href="#">トップ</a> &gt; <span>プロフィール</span>
+      </div>
+      
+      <!-- ユーザーカバー画像エリア -->
+      <div class="user-cover-image" style="background-image: url('images/common/ヘッダー.jpg'); background-size: cover; background-position: center;"></div>
+
+      <!-- ユーザーヘッダーエリア -->
+      <div class="nico-profile-header">
+        <div class="nico-profile-icon">
+          <img src="images/common/プロフ画像.jpg" alt="プロフィールアイコン">
+        </div>
+        <div class="nico-profile-info">
+          <!-- 上段：名前とアクションエリア -->
+          <div class="nico-header-top-row">
+            <div class="nico-user-name-container">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <h2 class="nico-user-name">みづこ</h2>
+                <span class="user-level-badge">LV.99</span>
+              </div>
+              <div class="nico-user-badges">
+                <span class="crown-badge crown-gold">👑殿堂入り</span>
+                <span class="crown-badge crown-gold">👑殿堂入り</span>
+                <span class="crown-badge crown-silver">👑準殿堂入り</span>
+              </div>
+            </div>
+            
+            <div class="nico-header-actions">
+              <button class="btn-follow" onclick="toggleFollow(this)">
+                <span class="icon-plus">＋</span> <span class="text">フォロー</span>
+              </button>
+            </div>
+          </div>
+          
+          <p class="nico-user-bio-short">かわいい生き物が好きです。アイコンは飼い猫のちゃみ。</p>
+        </div>
+      </div>
+
+      <!-- タブナビゲーション -->
+      <div class="nico-nav-tabs">
+        <button class="nico-nav-btn active" onclick="switchTab('about')">自己紹介・趣味</button>
+        <button class="nico-nav-btn" onclick="switchTab('history')">活動履歴</button>
+        <button class="nico-nav-btn" onclick="switchTab('skills')">スキル</button>
+        <button class="nico-nav-btn" onclick="switchTab('community')">コミュニティ</button>
+        <button class="nico-nav-btn" onclick="switchTab('sns')">SNS・リンク</button>
+      </div>
+
+      <!-- 1. 自己紹介タブ -->
+      <div id="tab-about" class="tab-content active">
+        <div class="content-box">
+          <h3>自己紹介</h3>
+          <p>
+            こんにちは、みづこです。<br><br>
+            大学では<b>経営情報学</b>のゼミに所属をし、AIと協働できる実践的スキル獲得を目指して、Webサービスやアプリケーション、AIワークフローの実装などを学んできました。
+            特に、ユーザーが触って「楽しい」「面白い」と感じられるようなインタラクティブな表現や、世界観のあるデザインを作るのが好きです。<br><br>
+            このポートフォリオサイトも、私が好きな2010年代のニコニコ動画の雰囲気をリスペクトして、遊び心を持って作りました。
+          </p>
+
+          <h3 style="margin-top: 2rem;">趣味・好きなこと</h3>
+          <ul style="line-height: 2;">
+            <li><strong>動画視聴:</strong> ニコニコ動画でゲーム実況やボカロ曲を巡回するのが日課です。</li>
+            <li><strong>ゲーム制作:</strong> Unityを使って簡単なアクションゲームを作るのにハマっています。</li>
+            <li><strong>3Dモデリング:</strong> Blenderでオリジナルキャラクターを作ったり、ワールドを作ったりしています。</li>
+            <li><strong>散歩:</strong> アイディアに行き詰まったら近所を散歩してリフレッシュします。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. 活動履歴タブ -->
+      <div id="tab-history" class="tab-content">
+        <div class="content-box">
+          <h3>ニコレポ (活動履歴)</h3>
+          <div class="nicorepo-list">
+            <div class="nicorepo-item">
+              <div class="nicorepo-icon">📺</div>
+              <div class="nicorepo-content">
+                <div class="nicorepo-header"><strong>みづこ</strong> が動画を投稿しました</div>
+                <div class="nicorepo-body">【Webサイト】ニコニコ動画風ポートフォリオ作ってみた</div>
+              </div>
+              <div class="nicorepo-time">2025/12/17</div>
+            </div>
+            <div class="nicorepo-item">
+              <div class="nicorepo-icon">🏆</div>
+              <div class="nicorepo-content">
+                <div class="nicorepo-header"><strong>みづこ</strong> がスタンプを獲得しました</div>
+                <div class="nicorepo-body">スタンプ「Webデザイナー Lv.1」</div>
+              </div>
+              <div class="nicorepo-time">2025/11/30</div>
+            </div>
+            <div class="nicorepo-item">
+              <div class="nicorepo-icon">🎮</div>
+              <div class="nicorepo-content">
+                <div class="nicorepo-header"><strong>みづこ</strong> が動画を投稿しました</div>
+                <div class="nicorepo-body">【Unity】3Dアクションゲーム「NICONICO ADVENTURE」</div>
+              </div>
+              <div class="nicorepo-time">2024/08/10</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. スキルタブ -->
+      <div id="tab-skills" class="tab-content">
+        <div class="content-box">
+          <h3>保有スキル</h3>
+          <div class="skill-grid">
+            <div class="skill-card">
+              <strong>Webフロントエンド</strong>
+              HTML, CSS, JavaScript, React
+            </div>
+            <div class="skill-card">
+              <strong>3D制作・ゲームエンジン</strong>
+              Blender, Blockbench, TyranoBuilder
+            </div>
+            <div class="skill-card">
+              <strong>その他</strong>
+              Git/GitHub, Firebase, n8n
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. コミュニティタブ -->
+      <div id="tab-community" class="tab-content">
+        <div class="content-box">
+          <h3>参加コミュニティ</h3>
+          <div class="community-grid">
+            <a href="#" class="community-card">
+              <img src="images/common/プロフ画像.jpg" alt="Icon" class="community-thumb">
+              <div class="community-info">
+                <h4>河合ゼミ (Web研究会)</h4>
+                <p>メンバー: 15人</p>
+              </div>
+            </a>
+            <a href="#" class="community-card">
+              <img src="images/thumbnails/2.png" alt="Icon" class="community-thumb">
+              <div class="community-info">
+                <h4>Unityゲーム制作部</h4>
+                <p>メンバー: 42人</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. SNSタブ -->
+      <div id="tab-sns" class="tab-content">
+        <div class="content-box">
+          <h3>SNS・リンク</h3>
+          <p style="margin-bottom: 1.5rem;">フォローお気軽にどうぞ！</p>
+          <div class="sns-grid">
+            <a href="https://github.com/c223083m" target="_blank" rel="noopener noreferrer" class="sns-btn sns-github">
+              GitHub
+            </a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="sns-btn sns-x">
+              ひとこと日記公式Ｘ
+            </a>
+            <a href="https://ideamarkets.info/archives/tag/%E3%81%B2%E3%81%A8%E3%81%93%E3%81%A8%E6%97%A5%E8%A8%98" class="sns-btn sns-blog">
+              開発日記 (途中)
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- フッター埋め込み -->
+    <footer class="site-footer">
+      <p>&copy; 2025 Mizuko's Portfolio</p>
+    </footer>
+  </div>
+
+  <script>
+    // タブ切り替え関数
+    function switchTab(targetId) {
+      // 1. コンテンツの切り替え
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => {
+        content.classList.remove('active');
+        if (content.id === 'tab-' + targetId) {
+          content.classList.add('active');
+        }
+      });
+
+      // 2. ボタンの切り替え
+      const buttons = document.querySelectorAll('.nico-nav-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        // ボタンのonclick属性に含まれる引数文字列をチェックして判定
+        if (btn.getAttribute('onclick').includes(`'${targetId}'`)) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    // フォローボタン切り替え
+    function toggleFollow(btn) {
+      btn.classList.toggle('following');
+      const textSpan = btn.querySelector('.text');
+      if (btn.classList.contains('following')) {
+        textSpan.textContent = 'フォロー中';
+      } else {
+        textSpan.textContent = 'フォロー';
+      }
+    }
+  </script>
+</body>
+</html>
