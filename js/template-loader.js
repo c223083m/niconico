@@ -1,5 +1,5 @@
 // Function to load an HTML file and inject it into a specified element
-const loadHTML = (filePath, elementId) => {
+const loadHTML = (filePath, elementId, basePath = '') => {
   return fetch(filePath)
     .then(response => {
       if (!response.ok) {
@@ -11,6 +11,27 @@ const loadHTML = (filePath, elementId) => {
       const element = document.getElementById(elementId);
       if (element) {
         element.innerHTML = data;
+
+        // Adjust paths if a basePath is provided
+        if (basePath) {
+          // Adjust links (a tags)
+          const links = element.querySelectorAll('a');
+          links.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('javascript:')) {
+              link.setAttribute('href', basePath + href);
+            }
+          });
+
+          // Adjust images (img tags)
+          const images = element.querySelectorAll('img');
+          images.forEach(img => {
+            const src = img.getAttribute('src');
+            if (src && !src.startsWith('http') && !src.startsWith('data:')) {
+              img.setAttribute('src', basePath + src);
+            }
+          });
+        }
       } else {
         console.error(`Element with ID "${elementId}" not found.`);
       }
