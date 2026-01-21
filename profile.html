@@ -17,38 +17,94 @@
       <div class="breadcrumb">
         <a href="index.html">トップ</a> &gt; <span>プロフィール</span>
       </div>
-      <section class="profile-section">
-        <div class="profile-header">
-          <img src="images/profile_icon.png" alt="プロフィールアイコン" class="profile-page-icon">
-          <div class="profile-header-text">
-            <h2>みづこ</h2>
-            <p>Webと3Dとニコニコ動画が好きです。</p>
-          </div>
-        </div>
+      
+      <!-- ユーザーカバー画像エリア -->
+      <div class="user-cover-image"></div>
 
-        <div class="profile-content">
+      <!-- ユーザーヘッダーエリア -->
+      <div class="nico-profile-header">
+        <div class="nico-profile-icon">
+          <img src="images/common/プロフ画像.jpg" alt="プロフィールアイコン">
+        </div>
+        <div class="nico-profile-info">
+          <h2 class="nico-user-name">
+            みづこ
+            <span class="user-level-badge">LV.99</span>
+          </h2>
+          <p class="nico-user-bio-short">Webデザインと3Dモデリングを勉強中。ニコニコ動画が好きです。</p>
+        </div>
+      </div>
+
+      <!-- タブナビゲーション -->
+      <div class="nico-nav-tabs">
+        <button class="nico-nav-btn active" onclick="switchTab('about')">自己紹介・趣味</button>
+        <button class="nico-nav-btn" onclick="switchTab('skills')">スキル</button>
+        <button class="nico-nav-btn" onclick="switchTab('sns')">SNS・リンク</button>
+      </div>
+
+      <!-- タブコンテンツエリア -->
+      <div id="tab-about" class="tab-content active">
+        <div class="content-box">
           <h3>自己紹介</h3>
           <p>
-            こんにちは、みづこです。大学のゼミでWebデザインやアプリケーション開発、3Dモデリングなどを学んできました。
-            特に、ユーザーが触って「楽しい」「面白い」と感じられるようなインタラクティブな表現や、世界観のあるデザインを作るのが好きです。
+            こんにちは、みづこです。<br>
+            大学のゼミでWebデザインやアプリケーション開発、3Dモデリングなどを学んできました。
+            特に、ユーザーが触って「楽しい」「面白い」と感じられるようなインタラクティブな表現や、世界観のあるデザインを作るのが好きです。<br><br>
             このポートフォリオサイトも、私が大好きな2010年代のニコニコ動画の雰囲気をリスペクトして、遊び心を持って作りました。
           </p>
-          
-          <h3>スキルセット</h3>
-          <ul class="skill-list">
-            <li><strong>Web制作:</strong> HTML, CSS, JavaScript, React, Next.js, Firebase</li>
-            <li><strong>3D制作:</strong> Blender, Unity</li>
-            <li><strong>デザイン:</strong> Figma, Photoshop, Illustrator</li>
-            <li><strong>その他:</strong> Git, GitHub</li>
-          </ul>
 
-          <h3>リンク集</h3>
-          <ul class="link-list">
-            <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">X (旧Twitter)</a></li>
+          <h3 style="margin-top: 2rem;">趣味・好きなこと</h3>
+          <ul style="line-height: 2;">
+            <li><strong>動画視聴:</strong> ニコニコ動画でゲーム実況やボカロ曲を巡回するのが日課です。</li>
+            <li><strong>ゲーム制作:</strong> Unityを使って簡単なアクションゲームを作るのにハマっています。</li>
+            <li><strong>3Dモデリング:</strong> Blenderでオリジナルキャラクターを作ったり、ワールドを作ったりしています。</li>
+            <li><strong>散歩:</strong> アイディアに行き詰まったら近所を散歩してリフレッシュします。</li>
           </ul>
         </div>
-      </section>
+      </div>
+
+      <div id="tab-skills" class="tab-content">
+        <div class="content-box">
+          <h3>保有スキル</h3>
+          <div class="skill-grid">
+            <div class="skill-card">
+              <strong>Webフロントエンド</strong>
+              HTML5, CSS3, JavaScript (ES6+), React, Next.js, Tailwind CSS
+            </div>
+            <div class="skill-card">
+              <strong>3D制作・ゲームエンジン</strong>
+              Blender (モデリング/リギング), Unity (C#)
+            </div>
+            <div class="skill-card">
+              <strong>デザインツール</strong>
+              Figma, Adobe Photoshop, Illustrator
+            </div>
+            <div class="skill-card">
+              <strong>その他</strong>
+              Git/GitHub, Firebase, Vercel
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-sns" class="tab-content">
+        <div class="content-box">
+          <h3>SNS・リンク</h3>
+          <p style="margin-bottom: 1.5rem;">制作物の進捗や日常のことを呟いています。フォローお気軽にどうぞ！</p>
+          <div class="sns-grid">
+            <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="sns-btn sns-github">
+              GitHub
+            </a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="sns-btn sns-x">
+              X (旧Twitter)
+            </a>
+            <a href="#" class="sns-btn sns-blog">
+              技術ブログ (Note)
+            </a>
+          </div>
+        </div>
+      </div>
+
     </main>
 
     <div id="footer-placeholder"></div>
@@ -57,6 +113,55 @@
   <script>
     loadHTML('_includes/header.html', 'header-placeholder');
     loadHTML('_includes/footer.html', 'footer-placeholder');
+
+    // タブ切り替え関数
+    function switchTab(tabName) {
+      // 全てのタブボタンからactiveクラスを削除
+      const buttons = document.querySelectorAll('.nico-nav-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      // クリックされたボタンにactiveクラスを追加
+      // event.targetだとspanなどがクリックされた場合にずれる可能性があるため、
+      // onclickで呼び出す際にthisを渡すか、ループで判定するのが確実ですが、
+      // 今回は簡易的に、クリックされたボタン（関数を呼び出した要素）を特定する必要があります。
+      // 引数で判定する方法をとります。
+      
+      // ボタンのハイライト更新 (単純化のため、テキスト内容や順番で判定せず、再取得してindexで合わせる等の実装も考えられますが、
+      // ここではeventを使わず、単純にtabNameに対応するボタンを何らかの方法で探すか、
+      // あるいはonclick="switchTab('about', this)" のようにthisを渡すのがベストです。
+      // HTML側を修正できない場合はクエリで探します。)
+    }
+  </script>
+  <!-- switchTab関数の実装修正のため、スクリプト全体を書き直します -->
+  <script>
+    // Load header and footer
+    loadHTML('_includes/header.html', 'header-placeholder');
+    loadHTML('_includes/footer.html', 'footer-placeholder');
+
+    function switchTab(targetId) {
+      // 1. コンテンツの切り替え
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => {
+        content.classList.remove('active');
+        if (content.id === 'tab-' + targetId) {
+          content.classList.add('active');
+        }
+      });
+
+      // 2. ボタンの切り替え
+      // eventオブジェクトが取れない場合を考慮し、onclick属性内の呼び出しに合わせる
+      // ここでは全てのボタンを取得し、そのonclick属性の文字列をチェックするか、
+      // 単純にイベントリスナ型に変えるのがモダンですが、既存HTMLのonclickを生かす形で実装します。
+      
+      const buttons = document.querySelectorAll('.nico-nav-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+        // ボタンのonclick属性に含まれる引数文字列をチェックして判定
+        if (btn.getAttribute('onclick').includes(`'${targetId}'`)) {
+          btn.classList.add('active');
+        }
+      });
+    }
   </script>
 </body>
 </html>
