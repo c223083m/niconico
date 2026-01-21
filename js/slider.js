@@ -1,5 +1,5 @@
 class SimpleSlider {
-  constructor(containerId, items) {
+  constructor(containerId, items, options = {}) {
     this.container = document.getElementById(containerId);
     if (!this.container) {
       console.error(`Slider container with id "${containerId}" not found.`);
@@ -11,6 +11,7 @@ class SimpleSlider {
       typeof item === 'string' ? { src: item, link: '#', title: '' } : item
     );
     this.currentIndex = 0;
+    this.onSlideChange = options.onSlideChange || null; // コールバック関数
     
     this.render();
     this.attachEvents();
@@ -28,7 +29,7 @@ class SimpleSlider {
         <div id="slide-counter" class="slide-counter">${this.currentIndex + 1} / ${this.items.length}</div>
       </div>
     `;
-    this.updateImage();
+    this.updateImage(false); // 初回は通知しない設定も可能だが、統一のため通知してもよい。ここでは通知しない。
   }
   
   attachEvents() {
@@ -36,7 +37,7 @@ class SimpleSlider {
     this.container.querySelector('#slide-next').addEventListener('click', () => this.next());
   }
 
-  updateImage() {
+  updateImage(notify = true) {
     const imgElement = this.container.querySelector('#slide-image');
     const linkElement = this.container.querySelector('#slide-link');
     const titleElement = this.container.querySelector('#slide-title');
@@ -58,6 +59,12 @@ class SimpleSlider {
         }
 
         imgElement.style.opacity = '1';
+        
+        // スライド切り替え通知
+        if (notify && this.onSlideChange) {
+            this.onSlideChange(this.currentIndex, item);
+        }
+
     }, 250); // CSSのtransition時間と合わせるか、少し短くする
 
     const counterElement = this.container.querySelector('#slide-counter');

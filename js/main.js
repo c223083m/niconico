@@ -21,6 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 5, nickname: '名無しさん', text: 'ぬるぬる動くよ' },
   ];
 
+  // 汎用コメント（スライド切り替え時にランダムで流す）
+  const burstComments = [
+    'うぽつ', '88888888', 'おおおお', 'すげえええ', 'きれい', 
+    '見入ってしまう', 'これはいいものだ', 'GJ', '期待', 'wktk',
+    '神動画', 'マイリス余裕', 'もっと評価されるべき', '才能の無駄遣い',
+    '野生のプロ', 'ニコニコ技術部', 'これは伸びる', '初見', '！？',
+    '雰囲気あるなぁ', '配色すき', '動きがなめらか', '詳細プリーズ'
+  ];
+
   // --- 関数定義 ---
 
   function loadComments() {
@@ -67,17 +76,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
-  function addDanmaku(comment) {
+  function addDanmaku(text) {
     if (!player) return;
     const danmakuElement = document.createElement('span');
     danmakuElement.className = 'danmaku';
-    danmakuElement.textContent = escapeHTML(comment.text);
+    danmakuElement.textContent = escapeHTML(text);
     const playerHeight = player.clientHeight;
+    
+    // 配置位置（高さ）をランダムに
     danmakuElement.style.top = `${Math.random() * (playerHeight - 40)}px`;
+    
+    // 流れる速度を少しランダムに（7s 〜 12s）
+    const duration = 7 + Math.random() * 5;
+    danmakuElement.style.animationDuration = `${duration}s`;
+
     danmakuElement.addEventListener('animationend', () => {
       danmakuElement.remove();
     });
     player.appendChild(danmakuElement);
+  }
+
+  // スライド切り替え時にコメントをまとめて流す
+  function flowCommentsBurst() {
+    // 3〜6個のコメントをランダムに選んで流す
+    const count = 3 + Math.floor(Math.random() * 4);
+    
+    for (let i = 0; i < count; i++) {
+        const text = burstComments[Math.floor(Math.random() * burstComments.length)];
+        // タイミングをずらして流す (0ms 〜 2000ms の遅延)
+        setTimeout(() => {
+            addDanmaku(text);
+        }, Math.random() * 2000);
+    }
   }
 
   function updateCommentCount() {
@@ -94,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const newComment = { id: Date.now(), nickname, text };
     
     comments.push(newComment);
-    addDanmaku(newComment);
+    addDanmaku(newComment.text); // 即座に流す
     
     const commentElement = document.createElement('div');
     commentElement.className = 'comment-item';
@@ -125,21 +155,20 @@ document.addEventListener('DOMContentLoaded', () => {
         title: work.title
       }));
       
-      const topSlider = new SimpleSlider('top-slideshow', sliderItems);
+      const topSlider = new SimpleSlider('top-slideshow', sliderItems, {
+        // スライド切り替え時のコールバック
+        onSlideChange: (index, item) => {
+            flowCommentsBurst();
+        }
+      });
       
+      // 初回のコメント流し
+      flowCommentsBurst();
+
       setInterval(() => {
         topSlider.next();
       }, 5000);
     }
-  }
-
-  function initializeDanmakuLoop() {
-    // ページ読み込み時に既存のコメントを一度だけ、少しずつずらして流す
-    comments.forEach((comment, index) => {
-        setTimeout(() => {
-            addDanmaku(comment);
-        }, index * 2500); // 2.5秒ずつずらす
-    });
   }
 
   // --- イベントリスナーの設定 ---
@@ -150,6 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 初期化処理の実行 ---
   loadComments();
   initializeTopSlideshow();
-  initializeDanmakuLoop();
+  // initializeDanmakuLoop(); // 初期ループは廃止し、スライド連動に統合
 
 });
