@@ -1,11 +1,15 @@
 class SimpleSlider {
-  constructor(containerId, images) {
+  constructor(containerId, items) {
     this.container = document.getElementById(containerId);
     if (!this.container) {
       console.error(`Slider container with id "${containerId}" not found.`);
       return;
     }
-    this.images = images;
+    // items is now expected to be an array of objects: { src: string, link: string, title?: string }
+    // Backwards compatibility check: if items are strings, convert to objects
+    this.items = items.map(item => 
+      typeof item === 'string' ? { src: item, link: '#', title: '' } : item
+    );
     this.currentIndex = 0;
     
     this.render();
@@ -15,10 +19,13 @@ class SimpleSlider {
   render() {
     this.container.innerHTML = `
       <div class="slideshow-container">
-        <img id="slide-image" class="slide-image" src="${this.images[this.currentIndex]}" alt="Slide ${this.currentIndex + 1}">
+        <a id="slide-link" href="${this.items[this.currentIndex].link}">
+            <div id="slide-title" class="slide-title"></div>
+            <img id="slide-image" class="slide-image" src="${this.items[this.currentIndex].src}" alt="Slide ${this.currentIndex + 1}">
+        </a>
         <button id="slide-prev" class="slide-button slide-prev">&lt;</button>
         <button id="slide-next" class="slide-button slide-next">&gt;</button>
-        <div id="slide-counter" class="slide-counter">${this.currentIndex + 1} / ${this.images.length}</div>
+        <div id="slide-counter" class="slide-counter">${this.currentIndex + 1} / ${this.items.length}</div>
       </div>
     `;
     this.updateImage();
@@ -31,26 +38,39 @@ class SimpleSlider {
 
   updateImage() {
     const imgElement = this.container.querySelector('#slide-image');
+    const linkElement = this.container.querySelector('#slide-link');
+    const titleElement = this.container.querySelector('#slide-title');
+    
     // フェード効果のために一旦透明にする
     imgElement.style.opacity = '0';
     
     setTimeout(() => {
-        imgElement.src = this.images[this.currentIndex];
+        const item = this.items[this.currentIndex];
+        imgElement.src = item.src;
         imgElement.alt = `Slide ${this.currentIndex + 1}`;
+        linkElement.href = item.link;
+        
+        if (item.title) {
+            titleElement.textContent = item.title;
+            titleElement.style.display = 'block';
+        } else {
+            titleElement.style.display = 'none';
+        }
+
         imgElement.style.opacity = '1';
     }, 250); // CSSのtransition時間と合わせるか、少し短くする
 
     const counterElement = this.container.querySelector('#slide-counter');
-    counterElement.textContent = `${this.currentIndex + 1} / ${this.images.length}`;
+    counterElement.textContent = `${this.currentIndex + 1} / ${this.items.length}`;
   }
 
   next() {
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    this.currentIndex = (this.currentIndex + 1) % this.items.length;
     this.updateImage();
   }
 
   prev() {
-    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+    this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
     this.updateImage();
   }
 }

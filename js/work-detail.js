@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize the slider
     const thumbnailImage = `../${work.thumbnail}`;
     const slideImages = work.workImages.map(path => `../${path}`);
-    const allImages = [thumbnailImage, ...slideImages];
+    const allImages = [thumbnailImage, ...slideImages].map(src => ({ src, link: 'javascript:void(0)' }));
     new SimpleSlider('slideshow', allImages);
 
   } else {

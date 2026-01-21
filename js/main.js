@@ -118,10 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initializeTopSlideshow() {
     if (typeof works !== 'undefined' && works.length > 0) {
-      // data.js に新しく書いた「thumbnail」のパスをそのまま使う
-      const thumbnailUrls = works.map(work => work.thumbnail);
+      // data.js に新しく書いた「thumbnail」のパスと、作品詳細ページへのリンク、タイトルを渡す
+      const sliderItems = works.map(work => ({
+        src: work.thumbnail,
+        link: `works/work.html?id=${work.id}`,
+        title: work.title
+      }));
       
-      const topSlider = new SimpleSlider('top-slideshow', thumbnailUrls);
+      const topSlider = new SimpleSlider('top-slideshow', sliderItems);
       
       setInterval(() => {
         topSlider.next();
