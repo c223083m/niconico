@@ -80,4 +80,8 @@ class SimpleSlider {
     this.currentIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
     this.updateImage();
   }
+
+  getCurrentItem() {
+    return this.items[this.currentIndex];
+  }
 }

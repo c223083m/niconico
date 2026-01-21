@@ -11,14 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 定数と変数 ---
   const COMMENTS_KEY = 'niconico-portfolio-comments';
   let comments = [];
+  let topSlider = null; // スライダーインスタンスを保持
 
   // --- サンプルコメント ---
   const sampleComments = [
-    { id: 1, nickname: '名無しさん', text: 'wktk' },
-    { id: 2, nickname: '名無しさん', text: 'うぽつ' },
-    { id: 3, nickname: '名無しさん', text: '8888888888888888' },
-    { id: 4, nickname: '名無しさん', text: '河合ゼミ' },
-    { id: 5, nickname: '名無しさん', text: 'ぬるぬる動くよ' },
+    { id: 1, nickname: '名無しさん', text: 'wktk', workId: null },
+    { id: 2, nickname: '名無しさん', text: 'うぽつ', workId: null },
+    { id: 3, nickname: '名無しさん', text: '8888888888888888', workId: null },
+    { id: 4, nickname: '名無しさん', text: '河合ゼミ', workId: null },
+    { id: 5, nickname: '名無しさん', text: 'ぬるぬる動くよ', workId: null },
   ];
 
   // 汎用コメント（スライド切り替え時にランダムで流す）
@@ -97,16 +98,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // スライド切り替え時にコメントをまとめて流す
-  function flowCommentsBurst() {
-    // 3〜6個のコメントをランダムに選んで流す
-    const count = 3 + Math.floor(Math.random() * 4);
-    
-    for (let i = 0; i < count; i++) {
+  function flowCommentsBurst(currentItem) {
+    // 1. 汎用コメントをランダムに流す (3〜5個)
+    const randomCount = 3 + Math.floor(Math.random() * 3);
+    for (let i = 0; i < randomCount; i++) {
         const text = burstComments[Math.floor(Math.random() * burstComments.length)];
-        // タイミングをずらして流す (0ms 〜 2000ms の遅延)
         setTimeout(() => {
             addDanmaku(text);
-        }, Math.random() * 2000);
+        }, Math.random() * 2500);
+    }
+
+    // 2. この作品に紐付いた保存済みコメントを流す
+    if (currentItem && currentItem.id) {
+        const targetComments = comments.filter(c => c.workId === currentItem.id);
+        targetComments.forEach(comment => {
+            setTimeout(() => {
+                addDanmaku(comment.text);
+            }, Math.random() * 3000); // 汎用コメントより少し広めの範囲でばらけさせる
+        });
     }
   }
 
@@ -121,7 +130,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const nickname = nicknameInput.value.trim() || '名無しさん';
     const text = commentInput.value.trim();
     if (!text) return;
-    const newComment = { id: Date.now(), nickname, text };
+
+    // 現在のスライドIDを取得
+    let currentWorkId = null;
+    if (topSlider && typeof topSlider.getCurrentItem === 'function') {
+        const item = topSlider.getCurrentItem();
+        if (item) {
+            currentWorkId = item.id;
+        }
+    }
+
+    const newComment = { id: Date.now(), nickname, text, workId: currentWorkId };
     
     comments.push(newComment);
     addDanmaku(newComment.text); // 即座に流す
@@ -148,22 +167,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initializeTopSlideshow() {
     if (typeof works !== 'undefined' && works.length > 0) {
-      // data.js に新しく書いた「thumbnail」のパスと、作品詳細ページへのリンク、タイトルを渡す
+      // data.js の works 配列からアイテムを生成 (IDを含める)
       const sliderItems = works.map(work => ({
         src: work.thumbnail,
         link: `works/work.html?id=${work.id}`,
-        title: work.title
+        title: work.title,
+        id: work.id // workIdとして使用
       }));
       
-      const topSlider = new SimpleSlider('top-slideshow', sliderItems, {
+      topSlider = new SimpleSlider('top-slideshow', sliderItems, {
         // スライド切り替え時のコールバック
         onSlideChange: (index, item) => {
-            flowCommentsBurst();
+            flowCommentsBurst(item);
         }
       });
       
-      // 初回のコメント流し
-      flowCommentsBurst();
+      // 初回のコメント流し (最初のアイテムに対して)
+      if (sliderItems.length > 0) {
+          flowCommentsBurst(sliderItems[0]);
+      }
 
       setInterval(() => {
         topSlider.next();
