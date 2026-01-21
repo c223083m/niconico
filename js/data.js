@@ -1,7 +1,7 @@
 const works = [
   {
     id: 'work-1',
-    title: '【Webサイト】ニコニコ動画風ポートフォリオ作ってみた',
+    title: '【iOSアプリ】「ひとこと日記」開発のすべてが分かる動画',
     views: 1234,
     comments: 56,
     postedAt: '2025/12/17',
