@@ -1,24 +1,23 @@
 const works = [
   {
     id: 'work-1',
-    title: '【React】ニコニコ動画風ポートフォリオ作ってみた【Next.js】',
+    title: '【Webサイト】ニコニコ動画風ポートフォリオ作ってみた',
     views: 1234,
     comments: 56,
-    postedAt: '2024/11/19',
-    description: 'ニコニコ動画風UIをモチーフにしたReact製ポートフォリオサイトです。',
+    postedAt: '2025/12/17',
+    description: 'ニコニコ動画風UIをモチーフにしたポートフォリオサイトです。',
     scope: '企画・デザイン・実装すべて',
-    period: '約1週間',
+    period: '約5時間',
     links: [
-      { name: 'GitHubリポジトリ', url: '#' },
-      { name: 'デプロイ先URL', url: '#' }
+      { name: 'URL', url: '#' }
     ],
     authorComment: [
       { title: '1. なぜこの作品を作ろうと思ったか', text: '自分のポートフォリオを作るにあたり、ただ作品を並べるだけでなく、サイト自体も一つの作品として見て面白いものにしたい、という思いから制作しました。昔から慣れ親しんだニコニコ動画のUIは、情報量が多くてもなぜかワクワクする不思議な魅力があると感じており、その雰囲気を再現することに挑戦しました。' },
       { title: '2. こだわったポイント', text: 'ダークな背景に映えるアクセントカラーの選定や、コメントや弾幕が流れるアニメーションなど、「それっぽさ」の演出にこだわりました。特に弾幕は、見ているだけでも楽しめるように、いくつかのサンプルコメントを常に流すようにしています。' },
       { title: '3. 苦労した点・次に活かしたい学び', text: '当初はReact(Next.js)で開発を進めていましたが、ビルド周りのエラーに苦戦し、最終的にシンプルなHTML/CSS/JS構成に切り替えました。これにより、フレームワークの複雑さから解放され、より本質的な機能実装に集中できました。Webの基本的な技術の重要性を再認識する良い機会となりました。' }
     ],
-    tags: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'UIデザイン'],
-    category: 'Webアプリ',
+    tags: ['HTML', 'CSS', 'JavaScript'],
+    category: 'Webサイト',
     thumbnail: 'images/thumbnails/1.jpg',
     workImages: [
       'images/works/1/2.jpg',
