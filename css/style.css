@@ -577,7 +577,7 @@ a:hover {
   border: 1px solid #ccc;
   border-top: none;
   border-radius: 0 0 8px 8px;
-  padding: 2.5rem 2rem 2rem 2rem; /* Increased top padding slightly more */
+  padding: 1rem 1rem 1rem 2rem; /* Reduced right padding to move content closer to edge */
   margin-bottom: 2rem;
   display: flex;
   align-items: flex-end;
@@ -657,8 +657,18 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-top: 0.5rem;
+  margin-top: 0;
+  align-self: flex-start;
 }
+
+/* ... (skipping to mobile) ... */
+
+    .nico-profile-icon {
+      width: 100px;
+      height: 100px;
+      margin-top: -50px;
+      margin-left: 0;
+    }
 
 .crown-badge {
   font-size: 0.75rem;
@@ -1397,6 +1407,7 @@ a:hover {
         flex-wrap: wrap; /* Enable wrapping */
         border-bottom: none; /* Remove single line border */
         gap: 0.5rem; /* Space between buttons */
+        margin-bottom: 1rem; /* Reduced bottom margin */
     }
     
     .nico-nav-btn {
@@ -1432,11 +1443,13 @@ a:hover {
       padding: 2.5rem 1rem 0.5rem 1rem; /* Reduced bottom padding to remove blank space */
       gap: 1rem;
       position: relative; /* Ensure relative positioning for absolute children */
+      margin-bottom: 1rem; /* Reduced bottom margin */
     }
     .nico-profile-icon {
       width: 100px;
       height: 100px;
       margin-top: -50px;
+      margin-left: 0; /* Reset left margin to prevent popping out */
     }
     .nico-user-name {
       font-size: 1.4rem;
@@ -1448,8 +1461,8 @@ a:hover {
     }
     .nico-header-actions {
       position: absolute;
-      top: 1.5rem; /* Align with the visual top row inside the card */
-      right: 1rem;
+      top: 0.5rem; /* Moved higher up */
+      right: 0.5rem; /* Moved closer to the right edge */
       margin-top: 0;
     }
 }
