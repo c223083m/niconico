@@ -1440,29 +1440,37 @@ a:hover {
     .nico-profile-header {
       flex-direction: column;
       align-items: flex-start;
-      padding: 2.5rem 1rem 0.5rem 1rem; /* Reduced bottom padding to remove blank space */
-      gap: 1rem;
-      position: relative; /* Ensure relative positioning for absolute children */
-      margin-bottom: 1rem; /* Reduced bottom margin */
+      padding: 10px 1rem 1rem 1rem; /* アイコンが上がった分、上の余白を詰める */
+      gap: 0.5rem;
+      position: relative;
+      margin-bottom: 1rem;
     }
     .nico-profile-icon {
+      position: absolute;
+      top: -130px; /* さらに上に移動させてヘッダー画像に深く重ねる */
+      left: 1rem;
       width: 100px;
       height: 100px;
-      margin-top: -50px;
-      margin-left: 0; /* Reset left margin to prevent popping out */
+      margin: 0;
+      z-index: 5;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     .nico-user-name {
       font-size: 1.4rem;
     }
     .nico-header-top-row {
-      flex-direction: column; /* Revert to column or block since button is moved */
+      display: flex;
+      flex-direction: row; /* Keep row to align button with name */
+      flex-wrap: nowrap; /* Prevent wrapping if possible, or wrap if tight */
+      align-items: flex-start; /* Align top of name with button */
+      justify-content: space-between;
       width: 100%;
       gap: 0.5rem;
     }
     .nico-header-actions {
-      position: absolute;
-      top: 0.5rem; /* Moved higher up */
-      right: 0.5rem; /* Moved closer to the right edge */
+      position: static; /* Remove absolute positioning */
       margin-top: 0;
+      flex-shrink: 0; /* Don't shrink the button */
     }
 }
