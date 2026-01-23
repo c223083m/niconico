@@ -1171,6 +1171,19 @@ a:hover {
 
 /* 2. PCサイズ（1024px以上）のみ */
 @media (min-width: 1024px) {
+  .site-header {
+      padding: 1.1rem 1.5rem; /* Increased padding */
+  }
+  .site-title {
+      font-size: 2rem; /* Larger Title */
+  }
+  .global-nav a {
+      font-size: 1.2rem; /* Larger Nav Links */
+  }
+  .hamburger-menu {
+      transform: scale(1.5); /* Larger Hamburger if visible */
+  }
+
   .main-layout-container {
     display: flex !important;
     align-items: stretch !important;
