@@ -109,7 +109,7 @@ a:hover {
 }
 
 .player-meta {
-  margin-top: 0; /* No margin */
+  margin-top: 0; 
   font-size: 0.9rem;
   color: #666;
   line-height: 1.4;
@@ -154,7 +154,7 @@ a:hover {
 .video-header-top {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Centered vertically on Desktop */
+  align-items: center; 
   gap: 1rem;
 }
 
@@ -164,7 +164,7 @@ a:hover {
 
 /* Specific override for the tags in the header to kill the gap */
 .video-header-tags.tag-list {
-  margin-top: 0 !important; /* Force zero margin */
+  margin-top: 0 !important; 
   width: 100%;
 }
 .video-header-tags .tag {
@@ -184,7 +184,10 @@ a:hover {
   height: 114px;
   overflow: hidden;
   box-sizing: border-box;
-  margin-top: 0; /* Margin removed, center alignment used instead */
+  
+  /* Desktop Icon Adjustment: Push down ONLY visually */
+  position: relative;
+  top: 15px;
 }
 .video-uploader-profile:hover {
   text-decoration: none;
@@ -207,9 +210,9 @@ a:hover {
 .video-title {
   font-size: 2rem;
   font-weight: bold;
-  line-height: 1.1; /* Very tight line height */
+  line-height: 1.1; 
   margin: 0;
-  padding-bottom: 0.2rem; /* Small padding */
+  padding-bottom: 0.2rem;
 }
 .video-catchphrase {
   font-size: 1.1rem;
@@ -1263,6 +1266,8 @@ a:hover {
         height: 94px;
         flex-shrink: 0;
         align-self: center !important;
+        position: static; /* No relative positioning on mobile */
+        top: auto;
     }
     .profile-icon-small {
         width: 100%;
