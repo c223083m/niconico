@@ -573,28 +573,31 @@ a:hover {
 }
 
 .nico-profile-header {
-  background-color: #252525; /* Keep Dark for Nico style */
-  border: 1px solid #555;
+  background-color: #eee; /* Light Gray */
+  border: 1px solid #ccc;
   border-top: none;
   border-radius: 0 0 8px 8px;
-  padding: 0 2rem 2rem 2rem;
+  padding: 2.5rem 2rem 2rem 2rem; /* Increased top padding slightly more */
   margin-bottom: 2rem;
   display: flex;
   align-items: flex-end;
   gap: 2rem;
   position: relative;
-  color: #fff; /* Ensure text is white inside */
+  color: #333; /* Dark text */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Added subtle shadow for depth */
 }
 
 .nico-profile-icon {
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  border: 4px solid #252525;
+  width: 160px; /* Increased from 120px */
+  height: 160px; /* Increased from 120px */
+  border-radius: 12px;
+  border: 4px solid #555; /* Dark Gray Border */
   background-color: #fff;
-  margin-top: -60px;
+  margin-top: -80px; /* Adjusted for larger size */
   flex-shrink: 0;
   overflow: hidden;
+  padding: 4px; /* Space for the "frame" effect */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 .nico-profile-icon img {
   width: 100%;
@@ -604,7 +607,7 @@ a:hover {
 
 .nico-profile-info {
   flex-grow: 1;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0; /* Remove padding causing extra space */
   min-width: 0;
 }
 
@@ -631,7 +634,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #fff;
+  color: #333; /* Dark text */
 }
 
 .user-level-badge {
@@ -713,9 +716,11 @@ a:hover {
 }
 
 .nico-user-bio-short {
-  color: #ccc;
+  color: #666; /* Darker gray for readability on light bg */
   font-size: 1rem;
   margin-top: 1rem;
+  margin-bottom: 0; /* Ensure no bottom margin */
+  line-height: 1.4;
 }
 
 
@@ -1387,23 +1392,64 @@ a:hover {
         background: #fff;
     }
 
+    /* Mobile Navigation Optimization (Grid Layout) */
+    .nico-nav-tabs {
+        flex-wrap: wrap; /* Enable wrapping */
+        border-bottom: none; /* Remove single line border */
+        gap: 0.5rem; /* Space between buttons */
+    }
+    
+    .nico-nav-btn {
+        flex: 1 1 40%; /* Auto-size, roughly 2 per row */
+        text-align: center;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        margin: 0; /* Reset margins */
+    }
+    
+    .nico-nav-btn:hover {
+        background-color: #f9f9f9;
+        border-radius: 4px;
+    }
+
+    .nico-nav-btn.active {
+        background-color: #e6f7ff; /* Light blue background for active */
+        border-color: #00aeff;
+        color: #00aeff;
+    }
+    
+    .nico-nav-btn.active::after {
+        display: none; /* Remove the underline effect in grid mode */
+    }
+
     /* Nico Profile on Mobile */
     .nico-profile-header {
       flex-direction: column;
       align-items: flex-start;
-      padding: 0 1rem 1.5rem 1rem;
+      padding: 2.5rem 1rem 0.5rem 1rem; /* Reduced bottom padding to remove blank space */
       gap: 1rem;
+      position: relative; /* Ensure relative positioning for absolute children */
     }
     .nico-profile-icon {
-      width: 70px;
-      height: 70px;
-      margin-top: -35px;
+      width: 100px;
+      height: 100px;
+      margin-top: -50px;
     }
     .nico-user-name {
       font-size: 1.4rem;
     }
     .nico-header-top-row {
-      flex-direction: column;
+      flex-direction: column; /* Revert to column or block since button is moved */
+      width: 100%;
       gap: 0.5rem;
+    }
+    .nico-header-actions {
+      position: absolute;
+      top: 1.5rem; /* Align with the visual top row inside the card */
+      right: 1rem;
+      margin-top: 0;
     }
 }
