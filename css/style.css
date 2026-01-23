@@ -426,10 +426,10 @@ a:hover {
   gap: 1rem;
 }
 
-/* --- 作品カード --- */
+/* --- 作品カード (Desktop/Base) --- */
 .work-card {
   display: flex;
-  align-items: center !important; 
+  align-items: flex-start !important; 
   background-color: #fff;
   padding: 0.75rem;
   border-radius: 6px;
@@ -487,6 +487,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-width: 0; 
 }
 .work-card-title {
   font-size: 1.2rem;
@@ -497,6 +498,9 @@ a:hover {
   -webkit-box-orient: vertical;
   overflow: hidden;
   transition: color 0.2s;
+  line-height: 1.4;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
 }
 .work-card-info a:hover .work-card-title {
   color: #00aeff;
@@ -507,12 +511,14 @@ a:hover {
   color: #666;
   display: flex;
   gap: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .work-card-description {
   font-size: 0.9rem;
   color: #666;
-  margin-top: 0.5rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -520,7 +526,7 @@ a:hover {
 
 .work-card-tags {
   margin-top: auto; 
-  padding-top: 0.5rem;
+  padding-top: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -1147,13 +1153,14 @@ a:hover {
     gap: 1.5rem !important;
   }
 
-  .player-section { flex: 5 !important; }
+  /* Optimized ratio for player vs summary: 2:1 */
+  .player-section { flex: 2 !important; }
 
   .comment-section {
     flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
-    min-width: 250px;
+    min-width: 300px;
   }
 
   .comment-list {
@@ -1178,11 +1185,19 @@ a:hover {
 /* 3. スマホサイズ（1023px以下）の微調整 */
 @media (max-width: 1023px) {
   .work-card {
-    padding: 0.5rem !important;
+    padding: 0 !important; 
+    flex-direction: column !important; 
+    border: none !important; 
+    border-radius: 0 !important;
+    background: transparent !important;
+    margin-bottom: 1.5rem;
   }
 
   .work-card-thumbnail {
-    width: 120px !important; /* スマホでは小さくする */
+    width: 100% !important; 
+    aspect-ratio: 16 / 9 !important;
+    border-radius: 0 !important; 
+    margin-bottom: 0.5rem !important;
   }
 
   .work-card-thumbnail img {
@@ -1191,8 +1206,46 @@ a:hover {
     object-fit: cover !important;
   }
 
+  .work-card-info {
+    padding: 0 0.5rem !important; 
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .work-card-title {
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    white-space: normal !important; 
+    overflow: visible !important;
+    text-overflow: clip !important;
+    line-height: 1.4 !important;
+    display: block !important; 
+    -webkit-line-clamp: 2 !important; 
+    margin-bottom: 0.25rem !important;
+  }
+
+  .work-card-meta {
+    font-size: 0.8rem !important;
+    color: #666 !important;
+    display: flex !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .work-card-description {
+    display: none !important; 
+  }
+
+  .work-card-tags {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+  .work-card-tag {
+      font-size: 0.75rem !important;
+      padding: 0.1rem 0.5rem !important;
   }
 
   .comment-section {
@@ -1266,7 +1319,7 @@ a:hover {
         height: 94px;
         flex-shrink: 0;
         align-self: center !important;
-        position: static; /* No relative positioning on mobile */
+        position: static; 
         top: auto;
     }
     .profile-icon-small {

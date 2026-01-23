@@ -10,12 +10,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set the page title
     pageTitle.textContent = `${work.title} - みづこのポートフォリオ`;
 
-    // Create the HTML structure
+    // Create the HTML structure (Matching Main Page Style)
     const workHTML = `
       <div class="breadcrumb">
         <a href="../index.html">トップ</a> &gt; <a href="../works.html">動画一覧</a> &gt; <span>${work.title}</span>
       </div>
-      <h2 class="work-detail-title">${work.title}</h2>
+
+      <section class="video-header-section">
+        <div class="video-header-top">
+          <div class="video-header-main">
+            <h2 class="video-title">${work.title}</h2>
+            <div class="player-meta">
+              <div class="meta-container">
+                <span class="meta-item"><strong>投稿日:</strong> ${work.postedAt}</span>
+                <span class="meta-item"><strong>再生:</strong> ${work.views.toLocaleString()}</span>
+                <span class="meta-item"><strong>コメント:</strong> ${work.comments.toLocaleString()}</span>
+                <span class="meta-item"><strong>カテゴリ:</strong> ${work.category}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tag-list video-header-tags">
+          ${work.tags.map(tag => `<a href="../works.html?tag=${encodeURIComponent(tag)}" class="tag">${tag}</a>`).join('')}
+        </div>
+      </section>
 
       <div class="main-layout-container">
         <section class="player-section">
@@ -43,20 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ` : ''}
           </div>
         </section>
-      </div>
-
-      <div class="video-details-grid">
-        <aside class="work-detail-aside">
-          <div class="meta-box">
-            <h4>投稿情報</h4>
-            <p>投稿日: ${work.postedAt}</p>
-            <p>カテゴリ: ${work.category}</p>
-            <h4>タグ</h4>
-            <div class="tag-list">
-              ${work.tags.map(tag => `<a href="../works.html?tag=${encodeURIComponent(tag)}" class="tag">${tag}</a>`).join('')}
-            </div>
-          </div>
-        </aside>
       </div>
     `;
 

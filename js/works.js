@@ -14,15 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
    * @returns {string} - 作品カードのHTML文字列
    */
   function createWorkCardHTML(work) {
-    // タグのHTMLを生成
+    // タグのHTMLを生成 (最大5つ)
     const tagsHTML = work.tags.slice(0, 5).map(tag => 
       `<a href="works.html?tag=${encodeURIComponent(tag)}" class="work-card-tag">${escapeHTML(tag)}</a>`
     ).join('');
 
+    // 説明文は削除 (要望により)
+    
     return `
       <div class="work-card">
         <a href="works/work.html?id=${work.id}" class="work-card-thumbnail">
-          <img src="${escapeHTML(work.thumbnail)}" alt="${escapeHTML(work.title)}" loading="lazy">          <div class="work-card-overlay">
+          <img src="${escapeHTML(work.thumbnail)}" alt="${escapeHTML(work.title)}" loading="lazy">
+          <div class="work-card-overlay">
             <svg class="play-icon" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path></svg>
           </div>
         </a>
@@ -31,10 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3 class="work-card-title">${escapeHTML(work.title)}</h3>
           </a>
           <div class="work-card-meta">
+            <span>${work.postedAt}</span>
             <span>再生: ${work.views.toLocaleString()}</span>
             <span>コメント: ${work.comments.toLocaleString()}</span>
           </div>
-          <p class="work-card-description">${escapeHTML(work.description)}</p>
+          <!-- Description removed -->
           <div class="work-card-tags">
             ${tagsHTML}
           </div>
