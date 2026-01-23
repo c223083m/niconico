@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="meta-item"><strong>カテゴリ:</strong> ${work.category}</span>
               </div>
             </div>
+            <div class="tag-list video-header-tags">
+              ${work.tags.map(tag => `<a href="../works.html?tag=${encodeURIComponent(tag)}" class="tag">${tag}</a>`).join('')}
+            </div>
           </div>
-        </div>
-        <div class="tag-list video-header-tags">
-          ${work.tags.map(tag => `<a href="../works.html?tag=${encodeURIComponent(tag)}" class="tag">${tag}</a>`).join('')}
         </div>
       </section>
 
