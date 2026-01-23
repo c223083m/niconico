@@ -592,7 +592,7 @@ a:hover {
   height: 160px; /* Increased from 120px */
   border-radius: 12px;
   border: 4px solid #555; /* Dark Gray Border */
-  background-color: #fff;
+  background-color: #555;
   margin-top: -80px; /* Adjusted for larger size */
   flex-shrink: 0;
   overflow: hidden;
@@ -650,7 +650,7 @@ a:hover {
 .nico-user-badges {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .nico-header-actions {
@@ -679,6 +679,7 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 3px;
+  white-space: nowrap;
 }
 .crown-gold {
   background: linear-gradient(135deg, #ffd700, #ff8c00);
@@ -1453,11 +1454,23 @@ a:hover {
       height: 100px;
       margin: 0;
       z-index: 5;
-      border: 3px solid #fff;
+      border: 3px solid #555;
+      background-color: #555;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     .nico-user-name {
       font-size: 1.4rem;
+    }
+    .nico-user-badges {
+      flex-wrap: nowrap;
+    }
+    .crown-badge {
+      font-size: 0.65rem;
+      padding: 1px 4px;
+    }
+    .user-level-badge {
+      font-size: 0.7rem;
+      padding: 1px 4px;
     }
     .nico-header-top-row {
       display: flex;
@@ -1466,11 +1479,19 @@ a:hover {
       align-items: flex-start; /* Align top of name with button */
       justify-content: space-between;
       width: 100%;
-      gap: 0.5rem;
+      gap: 0.3rem;
     }
     .nico-header-actions {
       position: static; /* Remove absolute positioning */
       margin-top: 0;
       flex-shrink: 0; /* Don't shrink the button */
+    }
+    .btn-follow {
+      padding: 0.2rem 0.5rem;
+      font-size: 0.75rem;
+      gap: 0.2rem;
+    }
+    .btn-follow .icon-plus {
+      font-size: 0.9rem;
     }
 }
