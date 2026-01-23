@@ -12,6 +12,19 @@ const loadHTML = (filePath, elementId, basePath = '') => {
       if (element) {
         element.innerHTML = data;
 
+        // Initialize hamburger menu if this is the header
+        if (elementId === 'header-placeholder') {
+          const hamburgerBtn = element.querySelector('.hamburger-menu');
+          if (hamburgerBtn) {
+            hamburgerBtn.onclick = (e) => {
+              e.stopPropagation();
+              document.body.classList.toggle('nav-open');
+              const nav = element.querySelector('.global-nav');
+              if (nav) nav.classList.toggle('active');
+            };
+          }
+        }
+
         // Adjust paths if a basePath is provided
         if (basePath) {
           // Adjust links (a tags)

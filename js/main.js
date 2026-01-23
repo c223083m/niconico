@@ -203,4 +203,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initializeTopSlideshow();
   // initializeDanmakuLoop(); // 初期ループは廃止し、スライド連動に統合
 
+  // Close menu when clicking a link (Global listener)
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.global-nav a')) {
+         document.body.classList.remove('nav-open');
+         const nav = document.querySelector('.global-nav');
+         if (nav) nav.classList.remove('active');
+    }
+  });
+
 });
