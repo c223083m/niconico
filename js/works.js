@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `<a href="works.html?tag=${encodeURIComponent(tag)}" class="work-card-tag">${escapeHTML(tag)}</a>`
     ).join('');
 
-    // 説明文は削除 (要望により)
-    
     return `
       <div class="work-card">
         <a href="works/work.html?id=${work.id}" class="work-card-thumbnail">
@@ -38,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <span>再生: ${work.views.toLocaleString()}</span>
             <span>コメント: ${work.comments.toLocaleString()}</span>
           </div>
-          <!-- Description removed -->
+          <p class="work-card-description">${escapeHTML(work.description)}</p>
           <div class="work-card-tags">
             ${tagsHTML}
           </div>

@@ -514,14 +514,19 @@ a:hover {
   margin-bottom: 0.5rem;
 }
 
+/* Works List Description Styling (Shown again) */
 .work-card-description {
   font-size: 0.9rem;
   color: #666;
   margin-top: 0;
   margin-bottom: 0.5rem;
-  white-space: nowrap;
+  
+  /* Use line-clamp for truncation */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal; /* Allow wrapping */
 }
 
 .work-card-tags {
@@ -915,7 +920,7 @@ a:hover {
 .sns-blog { background-color: #00aeff; }
 
 
-/* --- 作品詳細ページ --- */
+/* --- 作品詳細ページ (Metadata Layout Update) --- */
 .breadcrumb {
   font-size: 0.9rem;
   color: #666;
@@ -929,6 +934,25 @@ a:hover {
 .work-detail-title {
   font-size: 2rem;
   font-weight: bold;
+  margin-bottom: 0.5rem; /* Space before meta */
+}
+
+/* New Detail Page Layout classes */
+.work-detail-meta-row {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+.work-detail-meta-row .tag-list {
+    margin-top: 0.5rem; /* Added margin as requested */
+    display: flex; /* Changed back to flex to break line if needed */
+    flex-wrap: wrap;
+    width: 100%; /* Ensure it breaks to new line */
+    gap: 0.5rem;
 }
 
 .work-detail-main {
@@ -1232,8 +1256,15 @@ a:hover {
     margin-bottom: 0.25rem !important;
   }
 
+  /* Description shown on mobile again */
   .work-card-description {
-    display: none !important; 
+    display: -webkit-box !important; /* Show description */
+    font-size: 0.85rem !important;
+    color: #888 !important;
+    -webkit-line-clamp: 2 !important; /* Limit lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0.5rem !important;
   }
 
   .work-card-tags {

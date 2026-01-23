@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </section>
         <section id="comment-section" class="comment-section">
-          <h3>作品概要</h3>
           <div id="comment-list" class="comment-list">
             <div class="work-detail-main">
               <h3>作品説明</h3>
