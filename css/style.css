@@ -1361,11 +1361,15 @@ a:hover {
         margin: 1rem 0;
         margin-left: 2rem;
         display: block;
-        font-size: 1.1rem;
+        font-size: 1.4rem;
         color: #ccc;
     }
     .site-title {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+    }
+    .header-animation-frame {
+        width: 60px;
+        height: 36px;
     }
     .hamburger-menu {
         display: block;
@@ -1390,7 +1394,7 @@ a:hover {
         min-width: 0;
     }
     .video-title {
-        font-size: 1rem !important;
+        font-size: 1.5rem !important;
         margin-top: 0;
         line-height: 1.4;
         white-space: normal;
@@ -1426,6 +1430,10 @@ a:hover {
         border-radius: 4px;
         padding: 0.25rem;
         background: #fff;
+    }
+
+    .comment-section h3 {
+      display: none;
     }
 
     /* Mobile Navigation Optimization (Grid Layout) */
