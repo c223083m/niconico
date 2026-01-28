@@ -44,6 +44,15 @@ const loadHTML = (filePath, elementId, basePath = '') => {
               img.setAttribute('src', basePath + src);
             }
           });
+
+          // Adjust iframes (iframe tags)
+          const iframes = element.querySelectorAll('iframe');
+          iframes.forEach(iframe => {
+            const src = iframe.getAttribute('src');
+            if (src && !src.startsWith('http') && !src.startsWith('data:')) {
+              iframe.setAttribute('src', basePath + src);
+            }
+          });
         }
       } else {
         console.error(`Element with ID "${elementId}" not found.`);

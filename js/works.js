@@ -76,6 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const filteredWorks = selectedTag
     ? works.filter(work => work.tags.includes(selectedTag))
     : works;
+  
+  // 新しい順（IDの降順、あるいは配列の逆順）に並び替える
+  // data.js は現在 古い順(index 0 = work-0) -> 新しい順(index 6 = work-6) なので、
+  // 表示時はこれを逆転させる
+  const worksToDisplay = [...filteredWorks].reverse();
 
   // タイトルと「解除」リンクの表示を更新
   if (selectedTag) {
@@ -88,5 +93,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 画面に描画
-  renderWorks(filteredWorks);
+  renderWorks(worksToDisplay);
 });
