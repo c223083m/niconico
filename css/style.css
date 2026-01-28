@@ -43,6 +43,21 @@ a:hover {
   color: #fff; /* Keep White */
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-animation-frame {
+  width: 100px;
+  height: 60px;
+  border: none;
+  overflow: hidden;
+  border-radius: 4px;
+  display: block;
+}
+
 .site-title {
   font-size: 1.5rem;
   font-weight: bold;
@@ -588,11 +603,11 @@ a:hover {
 }
 
 .nico-profile-icon {
-  width: 160px; /* Increased from 120px */
-  height: 160px; /* Increased from 120px */
+  width: 180px; /* Increased from 120px */
+  height: 180px; /* Increased from 120px */
   border-radius: 1px;
   background-color: #545454;
-  margin-top: -80px; /* Adjusted for larger size */
+  margin-top: -90px; /* Adjusted for larger size */
   flex-shrink: 0;
   overflow: hidden;
   padding: 4px; /* Space for the "frame" effect */
@@ -1189,12 +1204,16 @@ a:hover {
 
 /* 2. PCサイズ（1024px以上）のみ */
 @media (min-width: 1024px) {
-  .site-header {
-      padding: 1.1rem 1.5rem; /* Increased padding */
-  }
   .site-title {
       font-size: 2rem; /* Larger Title */
   }
+  .global-nav a {
+      font-size: 1.2rem; /* Larger Nav Links */
+  }
+  .hamburger-menu {
+      transform: scale(1.5); /* Larger Hamburger if visible */
+  }
+
   .global-nav a {
       font-size: 1.2rem; /* Larger Nav Links */
   }
