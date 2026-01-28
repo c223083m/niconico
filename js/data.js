@@ -93,21 +93,21 @@ const works = [
   },
   {
     id: 'work-4',
-    title: '【Unity】3Dアクションゲーム「NICONICO ADVENTURE」',
+    title: 'AI画像生成のための便利ツール作ったった',
     views: 5678,
     comments: 123,
     postedAt: '2024/08/10',
-    description: 'Unityで制作した、広大な世界を冒険する3Dアクションゲーム。',
+    description: '生成したい画像のプロンプトをポチポチ押すだけで作成できるサイト。ボタンを押すと、似た意味の英単語をコンマ区切りで出力してくれます。プロンプトのコピー、履歴の保存、カテゴリーを追加できる機能なども搭載しています。',
     period: '約2ヶ月',
     links: [
-      { name: 'GitHubリポジトリ', url: '#' }
+      { name: 'GitHubリポジトリ', url: 'https://prompt-generate-site.netlify.app' }
     ],
     authorComment: [
-      { title: '1. なぜこの作品を作ろうと思ったか', text: 'ゼミの課題で、Unityを使ったオリジナルゲームを制作しました。「触っていて楽しい」をテーマに、キャラクターを動かすこと自体の気持ちよさを追求しました。' },
-      { title: '2. こだわったポイント', text: 'キャラクターのジャンプや移動のパラメータを細かく調整し、爽快感のある操作性を目指しました。また、ステージのギミックもプレイヤーを飽きさせないように、多様なバリエーションを考えました。' }
+      { title: '1. なぜこの作品を作ろうと思ったか', text: '卒業制作にAI画像生成の活用を検討しており、プロンプトを書くのが手間に思ったため、このツールを開発しました。' },
+      { title: '2. こだわったポイント', text: 'サイトの使いやすさと直感的な操作性にこだわりました。ボタン一つで関連する英単語が表示されるため、初心者でも簡単にプロンプトを作成できます。' }
     ],
-    tags: ['Unity', 'C#', 'ゲームデザイン', '3D'],
-    category: 'ゲーム',
+    tags: ['HTML', 'CSS', 'JavaScript', 'Webサイト', 'AI'],
+    category: 'Webサイト',
     thumbnail: 'images/thumbnails/4.png',
     workImages: [
       'images/works/4/2.png',
@@ -117,7 +117,7 @@ const works = [
   },
   {
     id: 'work-5',
-    title: '【iOSアプリ】「ひとこと日記」開発のすべてが分かる動画',
+    title: 'ひとこと日記のすべてが分かる動画【iOSアプリ】',
     views: 10000,
     comments: 100,
     postedAt: '2025/11/20',
@@ -157,10 +157,32 @@ const works = [
     ],
     tags: ['HTML', 'CSS', 'JavaScript', 'Webサイト'],
     category: 'Webサイト',
-    thumbnail: 'images/thumbnails/6.jpg', 
+    thumbnail: 'images/thumbnails/6.png', 
     workImages: [
-      // 'images/works/6/1.jpg', 
-      // 'images/works/6/2.jpg'
+      'images/works/6/2.png',
+      'images/works/6/3.png',
+      'images/works/6/4.png',
+      'images/works/6/5.png',
     ], 
   }
+  // {
+  //   id: 'work-7',
+  //   title: '【共同開発】河合先生に感謝伝えてみた【Windows98風】',
+  //   views: 400,
+  //   comments: 40,
+  //   postedAt: '2026/01/24',
+  //   description: 'ゼミの友人と共同開発で制作したWindows98風のwebサイトです。',
+  //   scope: '主にUI設計とデザインを担当。',
+  //   period: '約1週間',
+  //   authorComment: [
+  //     { title: '作者コメント', text: '作者コメント' }
+  //   ],
+  //   tags: ['タグ7', 'タグ8'],
+  //   category: 'その他',
+  //   thumbnail: 'images/thumbnails/7.jpg',
+  //   workImages: [
+  //     'images/works/7/2.jpg',
+  //     'images/works/7/3.jpg'
+  //   ],
+  // }
 ];
