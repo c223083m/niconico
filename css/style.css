@@ -1524,4 +1524,14 @@ a:hover {
     .btn-follow .icon-plus {
       font-size: 1rem;
     }
+
+    /* Button Adjustments */
+    #comment-form button {
+        font-size: 1.3rem !important;
+        padding: 1rem 1.2rem !important;
+    }
+    .button-link {
+        font-size: 0.9rem !important;
+        padding: 0.5rem !important;
+    }
 }
