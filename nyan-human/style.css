@@ -29,8 +29,8 @@ body {
 
 .star {
     position: absolute;
-    width: 2px; /* 小さくする */
-    height: 2px; /* 小さくする */
+    width: 2px;
+    height: 2px;
     background-color: white;
     animation: star-fly linear infinite;
 }
@@ -43,7 +43,7 @@ body {
 /* Center Container */
 .center-container {
     position: absolute;
-    left: 75%; /* Shifted slightly right */
+    left: 70%;
     top: 50%;
     width: auto;
     height: calc(30 * var(--u));

@@ -50,7 +50,7 @@ a:hover {
 }
 
 .header-animation-frame {
-  width: 100px;
+  width: 80px;
   height: 60px;
   border: none;
   overflow: hidden;
@@ -1361,8 +1361,11 @@ a:hover {
         margin: 1rem 0;
         margin-left: 2rem;
         display: block;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: #ccc;
+    }
+    .site-title {
+        font-size: 1.2rem;
     }
     .hamburger-menu {
         display: block;
@@ -1387,9 +1390,13 @@ a:hover {
         min-width: 0;
     }
     .video-title {
-        font-size: 1.7rem !important;
+        font-size: 1rem !important;
         margin-top: 0;
-        line-height: 1.2;
+        line-height: 1.4;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        display: block;
     }
     
     .video-uploader-profile {
