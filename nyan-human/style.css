@@ -57,9 +57,9 @@ body {
 }
 
 /* Responsive adjustment for small iframes (mobile header) */
-@media (max-width: 80px) {
+@media (max-width: 70px) {
     .center-container {
-        transform: translate(-50%, -50%) scale(0.14); /* Smaller scale for tiny iframe */
+        transform: translate(-50%, -50%) scale(0.15); /* Smaller scale for tiny iframe */
         left: 70%; /* Adjust centering slightly if needed */
     }
 }
